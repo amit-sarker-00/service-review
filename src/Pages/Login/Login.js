@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { logIn } = useContext(AuthContext);
+  const { logIn, googleSignIn } = useContext(AuthContext);
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,7 +13,18 @@ const Login = () => {
     logIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      if (user) {
+        Swal.fire("Login successfully");
+      }
     });
+  };
+  const handelGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div>
@@ -81,7 +93,10 @@ const Login = () => {
             <hr className="w-full" />
           </div>
           <div className="my-6 space-y-2">
-            <button className="btn flex items-center justify-center w-full p-2 space-x-4 border rounded-md dark:border-gray-400 ">
+            <button
+              onClick={handelGoogleSignUp}
+              className="btn flex items-center justify-center w-full p-2 space-x-4 border rounded-md dark:border-gray-400 "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"

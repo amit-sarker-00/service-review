@@ -14,7 +14,7 @@ const Header = () => {
         <Link to="/services">Services</Link>
       </li>
       <li>
-        <Link to="/cart">Cart</Link>
+        <Link to="/reviews">Reviews</Link>
       </li>
     </>
   );
@@ -41,7 +41,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow  rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow text-black border border-black  rounded-box w-52"
             >
               {menuItem}
             </ul>
@@ -50,7 +50,9 @@ const Header = () => {
             <div>
               <img src={logo} className="w-10 h-5" alt="" />
             </div>
-            Wild
+            <p>
+              Wild<span className="text-sm">Rabbit</span>
+            </p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

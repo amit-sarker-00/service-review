@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, googleSignIn } = useContext(AuthContext);
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,6 +14,14 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+      })
+      .catch((error) => console.error(error));
+  };
+  const handelGoogleSignUp = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
       .catch((error) => console.error(error));
   };
@@ -117,7 +125,7 @@ const Register = () => {
             </div>
             <div className="my-6 space-y-2">
               <button
-                // onClick={handelGoogleSignUp}
+                onClick={handelGoogleSignUp}
                 className="btn flex items-center justify-center w-full p-2 space-x-4 border rounded-md dark:border-gray-400  "
               >
                 <svg

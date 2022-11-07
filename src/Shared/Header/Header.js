@@ -68,9 +68,19 @@ const Header = () => {
         <div className="navbar-end">
           <>
             {user?.email ? (
-              <Link to="/login" onClick={handelLogOut} className="btn mr-3">
-                Log Out
-              </Link>
+              <>
+                <Link to="/login" onClick={handelLogOut} className="btn mr-3">
+                  Log Out
+                </Link>
+                <button>
+                  <img
+                    className="h-6 rounded-lg"
+                    src={user?.photoURL}
+                    title={user?.displayName}
+                    alt=""
+                  />
+                </button>
+              </>
             ) : (
               <Link to="/login" className="btn mr-3">
                 Login

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../src/assets/logo.png";
+import "./Header.css";
 const Header = () => {
   const menuItem = (
     <>
@@ -19,7 +20,7 @@ const Header = () => {
     </>
   );
   return (
-    <div>
+    <div className="">
       <div className="navbar bg-black  py-5 font-mono font-bold text-white">
         <div className="navbar-start">
           <div className="dropdown">
@@ -41,7 +42,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow text-black border border-black  rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow text-White border border-black  rounded-box w-52"
             >
               {menuItem}
             </ul>

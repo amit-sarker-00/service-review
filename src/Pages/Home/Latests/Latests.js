@@ -8,7 +8,6 @@ const Latests = () => {
       .then((res) => res.json())
       .then((data) => {
         setLatests(data);
-        console.log(data);
       });
   }, []);
   return (

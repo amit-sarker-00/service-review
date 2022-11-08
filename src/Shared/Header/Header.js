@@ -20,9 +20,18 @@ const Header = () => {
       <li>
         <Link to="/services">Services</Link>
       </li>
-      <li>
-        <Link to="/reviews">Reviews</Link>
-      </li>
+      {user ? (
+        <div className="flex">
+          <li>
+            <Link to="/addService">Add Services</Link>
+          </li>
+          <li>
+            <Link to="/reviews">My Reviews</Link>
+          </li>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
   return (

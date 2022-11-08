@@ -2,6 +2,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 const ServiceCollection = ({ data }) => {
   useEffect(() => {
     AOS.init();
@@ -31,9 +32,11 @@ const ServiceCollection = ({ data }) => {
             </div>
           </div>
           <div>
-            <button className="btn rounded-none w-full mt-4">
-              View Details
-            </button>
+            <Link to={`/service/${_id}`}>
+              <button className="btn rounded-none w-full mt-4">
+                View Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Services from "../Pages/Services/Services";
 import Blogs from "../Shared/Blogs/Blogs";
+import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,4 +25,5 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register></Register> },
     ],
   },
+  { path: "*", element: <ErrorPage></ErrorPage> },
 ]);

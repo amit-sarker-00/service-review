@@ -1,17 +1,37 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import useTitle from "../../Hooks/useTitle";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyReview = ({ data }) => {
-  const { user } = useContext(AuthContext);
+  const [reviews, setReviews] = useState([]);
   useTitle("MyReview");
-  const { image, description, ServiceName, name, email } = data;
-  if (user?.email === email) {
-    <h1>hello kuddus</h1>;
-  } else {
-    <h1>nothing here</h1>;
-  }
+  const { image, description, ServiceName, name, _id } = data;
+  const handelDelete = (id) => {
+    const toast = Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this!",
+      icon: "warning",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+    if (toast) {
+      fetch(`http://localhost:5000/reviewDelete/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deleteCount > 0) {
+            const remaining = reviews.filter((review) => review._id !== id);
+            setReviews(remaining);
+          }
+        });
+    }
+  };
   return (
     <div>
       <div className="flex text-center mx-auto h-auto md:h-80 my-10 flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -40,7 +60,12 @@ const MyReview = ({ data }) => {
           <p className="text">{description}</p>
         </div>
         <div className="flex items-center justify-around">
-          <button className="btn btn-outline btn-info rounded">Delete</button>
+          <button
+            onClick={() => handelDelete(_id)}
+            className="btn btn-outline btn-info rounded"
+          >
+            Delete
+          </button>
           <button className="btn  btn-info rounded">Edit Review</button>
         </div>
       </div>

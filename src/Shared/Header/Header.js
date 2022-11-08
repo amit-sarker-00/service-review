@@ -80,7 +80,11 @@ const Header = () => {
           <>
             {user?.email ? (
               <>
-                <Link to="/login" onClick={handelLogOut} className="btn mr-3">
+                <Link
+                  to="/"
+                  onClick={handelLogOut}
+                  className="btn text-black btn-info mr-3"
+                >
                   Log Out
                 </Link>
                 <button>
@@ -93,7 +97,7 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <Link to="/login" className="btn mr-3">
+              <Link to="/login" className="btn text-black btn-info mr-3">
                 Login
               </Link>
             )}

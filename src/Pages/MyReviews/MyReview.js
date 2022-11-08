@@ -18,6 +18,12 @@ const MyReview = ({ data }) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
+      //   if (reviews.length < 0) {
+      //      <div>
+      //         <h1>No review added </h1>
+
+      //     </div>;
+      //   }
     });
     if (toast) {
       fetch(`http://localhost:5000/reviewDelete/${id}`, {

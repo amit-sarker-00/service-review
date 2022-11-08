@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 import { Link } from "react-router-dom";
 const ServicesData = ({ sdata }) => {
   useEffect(() => {
@@ -16,7 +18,11 @@ const ServicesData = ({ sdata }) => {
         className="card card-compact  bg-base-100 shadow-xl p-6"
       >
         <figure>
-          <img src={image} className="h-64" alt="Shoes" />
+          <PhotoProvider>
+            <PhotoView src={image}>
+              <img src={image} className="h-64" alt="Shoes" />
+            </PhotoView>
+          </PhotoProvider>
         </figure>
         <div className="card-body p-0">
           <h2 className="card-title">{name}</h2>

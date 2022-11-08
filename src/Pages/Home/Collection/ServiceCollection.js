@@ -1,12 +1,20 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-import React from "react";
-
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const ServiceCollection = ({ data }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const { image, name, details, rating, price, _id } = data;
 
   return (
     <div>
-      <div className="card card-compact shadow-xl p-6">
+      <div
+        data-aos="fade-down"
+        data-aos-duration="2000"
+        className="card card-compact shadow-xl p-6"
+      >
         <figure>
           <img src={image} className="h-64" alt="Shoes" />
         </figure>
@@ -23,7 +31,9 @@ const ServiceCollection = ({ data }) => {
             </div>
           </div>
           <div>
-            <button className="btn rounded-none w-full mt-4">Details</button>
+            <button className="btn rounded-none w-full mt-4">
+              View Details
+            </button>
           </div>
         </div>
       </div>

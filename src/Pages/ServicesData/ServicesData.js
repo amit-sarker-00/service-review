@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 const ServicesData = ({ sdata }) => {
   useEffect(() => {
     AOS.init();
   }, []);
+
   const { _id, image, details, rating, price, name } = sdata;
   return (
     <div>
@@ -29,7 +31,11 @@ const ServicesData = ({ sdata }) => {
             </div>
           </div>
           <div>
-            <button className="btn rounded-none w-full mt-4">Details</button>
+            <Link to={`/service/${_id}`}>
+              <button className="btn rounded-none w-full mt-4">
+                View Details
+              </button>
+            </Link>
           </div>
         </div>
       </div>

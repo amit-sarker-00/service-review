@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { logIn, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -16,6 +19,7 @@ const Login = () => {
       if (user) {
         Swal.fire("Login successfully");
       }
+      navigate(from, { replace: true });
     });
   };
   const handelGoogleSignUp = () => {

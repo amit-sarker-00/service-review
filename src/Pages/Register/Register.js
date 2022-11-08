@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useTitle from "../../Hooks/useTitle";
 
 const Register = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
+  useTitle("Register");
   const handelSubmit = (event) => {
     event.preventDefault();
     const form = event.target;

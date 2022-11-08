@@ -1,6 +1,7 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
 import Collection from "../Collection/Collection";
+import Count from "../Count/Count";
 import Latests from "../Latests/Latests";
 import Slide from "../Slide/Slide";
 
@@ -11,6 +12,7 @@ const Home = () => {
       <Slide></Slide>
       <Collection></Collection>
       <Latests></Latests>
+      <Count></Count>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 const ServiceCollection = ({ data }) => {
-  const { image, name, details, rating, price } = data;
+  const { image, name, details, rating, price, _id } = data;
+
   return (
     <div>
       <div className="card card-compact shadow-xl p-6">

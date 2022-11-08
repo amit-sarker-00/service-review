@@ -58,7 +58,9 @@ const Header = () => {
               <img src={logo} className="w-10 h-5" alt="" />
             </div>
             <p>
-              Wild<span className="text-sm">Rabbit</span>
+              <Link to="/">
+                Wild<span className="text-sm">Rabbit</span>
+              </Link>
             </p>
           </Link>
         </div>

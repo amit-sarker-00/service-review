@@ -1,12 +1,20 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
 import useTitle from "../../Hooks/useTitle";
+import ServiceReview from "./ServiceReview";
 
 const ServiceDetails = () => {
   useTitle("ServiceDetails");
+  const [datas, setDatas] = useState([]);
   const ServiceDetail = useLoaderData();
   const { _id, name, details, image, rating, price } = ServiceDetail;
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews/${name}`)
+      .then((res) => res.json())
+      .then((data) => setDatas(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="max-w-screen-xl	mx-auto">
@@ -40,7 +48,22 @@ const ServiceDetails = () => {
           </div>
         </div>
         <div>
-          <h1>review section</h1>
+          <h1 className="text-xl md:text-3xl lg:text-5xl text-center font-bold">
+            review section
+          </h1>
+          <div>
+            <Link
+              to={`/addReview/${_id}`}
+              className="text-xl btn btn-info rounded my-4"
+            >
+              Add Reviews
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {datas.map((data) => (
+              <ServiceReview key={data._id} data={data}></ServiceReview>
+            ))}
+          </div>
         </div>
       </div>
     </div>

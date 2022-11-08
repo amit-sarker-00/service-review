@@ -18,11 +18,7 @@ const MyReviews = () => {
           My Reviews
         </h1>
       </div>
-      <div>
-        <Link to="/addReview">
-          <button className="btn btn-info rounded-sm">Add Review</button>
-        </Link>
-      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 ">
         {datas.map((data) => (
           <MyReview key={data._id} data={data}></MyReview>

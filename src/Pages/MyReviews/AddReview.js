@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useTitle from "../../Hooks/useTitle";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext);
+  const review = useLoaderData();
+  const itemName = review.name;
+  console.log(itemName);
   useTitle("AddReview");
   const handelAddReview = (event) => {
     event.preventDefault();
@@ -13,9 +17,11 @@ const AddReview = () => {
     const description = form.description.value;
     const ServiceName = form.ServiceName.value;
     const email = form.email.value;
+    // console.log(ServiceName);
 
     console.log(name, image, description);
     const addReview = {
+      itemName,
       name: name,
       image: image,
       description: description,
@@ -37,11 +43,6 @@ const AddReview = () => {
   };
   return (
     <div>
-      <div className="my-6">
-        <h1 className="text-xl md:text-3xl lg:text-5xl font-bold text-center ">
-          Add Review
-        </h1>
-      </div>
       <div className="w-full px-6 py-4 my-10 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg mx-auto">
         <form onSubmit={handelAddReview}>
           <div>

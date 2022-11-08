@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import useTitle from "../../Hooks/useTitle";
 
 const AddService = () => {
@@ -29,7 +30,9 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged) {
+          Swal.fire("Service added successfully");
+        }
       });
   };
   return (

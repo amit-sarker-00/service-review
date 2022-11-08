@@ -18,12 +18,6 @@ const MyReview = ({ data }) => {
       if (result.isConfirmed) {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
-      //   if (reviews.length < 0) {
-      //      <div>
-      //         <h1>No review added </h1>
-
-      //     </div>;
-      //   }
     });
     if (toast) {
       fetch(`http://localhost:5000/reviewDelete/${id}`, {
@@ -40,7 +34,7 @@ const MyReview = ({ data }) => {
   };
   return (
     <div>
-      <div className="flex text-center mx-auto h-auto md:h-80 my-10 flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">
+      <div className="flex text-center mx-auto h-auto md:h-96 my-10 flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">
         <div className="flex item-center justify-between">
           <div className="flex space-x-3">
             <img

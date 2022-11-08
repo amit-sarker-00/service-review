@@ -4,6 +4,7 @@ import Main from "../layout/Main";
 import AddService from "../Pages/AddService/AddService";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyReviews from "../Pages/MyReviews/MyReviews";
 import Register from "../Pages/Register/Register";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import Services from "../Pages/Services/Services";
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
       { path: "/addService", element: <AddService></AddService> },
+      {
+        path: "/myReviews",
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/service/:id",
         element: <ServiceDetails></ServiceDetails>,

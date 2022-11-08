@@ -4,7 +4,7 @@ import Latest from "./Latest";
 const Latests = () => {
   const [latests, setLatests] = useState([]);
   useEffect(() => {
-    fetch("latest.json")
+    fetch("http://localhost:5000/latest")
       .then((res) => res.json())
       .then((data) => {
         setLatests(data);
@@ -24,7 +24,7 @@ const Latests = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-20">
         {latests.map((latest) => (
-          <Latest key={latest.id} latest={latest}></Latest>
+          <Latest key={latest._id} latest={latest}></Latest>
         ))}
       </div>
     </div>

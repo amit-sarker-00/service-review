@@ -23,7 +23,7 @@ const MyReviews = () => {
         {datas?.length ? (
           <></>
         ) : (
-          <h1 className="text-xl md:text-3xl lg:text-5xl text-red-700 text-center font-bold ">
+          <h1 className="text-xl md:text-3xl lg:text-5xl text-red-700 text-center font-bold my-20">
             No reviews were added
           </h1>
         )}

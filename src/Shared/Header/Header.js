@@ -64,7 +64,7 @@ const Header = () => {
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <div>
-              <img src={logo} className="w-10 h-5" alt="" />
+              <img src={logo} className="w-10 h-5 hidden sm:block" alt="" />
             </div>
             <p>
               <Link to="/">
@@ -83,13 +83,13 @@ const Header = () => {
                 <Link
                   to="/"
                   onClick={handelLogOut}
-                  className="btn text-black btn-info mr-3"
+                  className="btn text-black btn-info mr-1"
                 >
                   Log Out
                 </Link>
                 <button>
                   <img
-                    className="h-6 rounded-lg"
+                    className="h-8 rounded-lg"
                     src={user?.photoURL}
                     title={user?.displayName}
                     alt=""

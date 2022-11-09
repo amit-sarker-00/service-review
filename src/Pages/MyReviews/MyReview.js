@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import useTitle from "../../Hooks/useTitle";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const MyReview = ({ data }) => {
+  const { user, logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useTitle("MyReview");
+  useEffect(() => {
+    fetch(`http://localhost:5000/myReviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setReviews(data);
+      });
+  }, []);
   const { image, description, ServiceName, name, _id } = data;
   const handelDelete = (id) => {
     const toast = Swal.fire({

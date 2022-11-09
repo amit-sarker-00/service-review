@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useTitle from "../../Hooks/useTitle";
 
@@ -38,6 +39,9 @@ const AddReview = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.acknowledged) {
+          Swal.fire("Review added successfully");
+        }
         form.reset();
       });
   };

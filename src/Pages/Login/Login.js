@@ -22,13 +22,16 @@ const Login = () => {
         email: user.email,
       };
       form.reset();
-      fetch("http://localhost:5000/jwt", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
+      fetch(
+        "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/jwt",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -40,7 +43,6 @@ const Login = () => {
       if (user) {
         Swal.fire("Login successfully");
       }
-      // navigate(from, { replace: true });
     });
   };
   const handelGoogleSignUp = () => {

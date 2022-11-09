@@ -24,7 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services></Services>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch(
+            "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/services"
+          ),
       },
       { path: "/blogs", element: <Blogs></Blogs> },
       { path: "/login", element: <Login></Login> },
@@ -33,7 +36,9 @@ export const router = createBrowserRouter([
         path: "/updateReview/:id",
         element: <UpdateReview></UpdateReview>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateReview/${params.id}`),
+          fetch(
+            `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/updateReview/${params.id}`
+          ),
       },
       {
         path: "/addService",
@@ -51,7 +56,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/myReviews",
@@ -65,7 +72,9 @@ export const router = createBrowserRouter([
         path: "/service/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/services/${params.id}`
+          ),
       },
     ],
   },

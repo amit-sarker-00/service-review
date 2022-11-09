@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useTitle from "../../Hooks/useTitle";
@@ -10,6 +10,8 @@ const AddReview = () => {
   const itemName = review.name;
   console.log(itemName);
   useTitle("AddReview");
+  const navigate = useNavigate();
+
   const handelAddReview = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -29,18 +31,22 @@ const AddReview = () => {
       ServiceName: ServiceName,
       email: email,
     };
-    fetch("http://localhost:5000/myReviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addReview),
-    })
+    fetch(
+      "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/myReviews",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
           Swal.fire("Review added successfully");
+          navigate(`/service/${review._id}`);
         }
         form.reset();
       });

@@ -4,7 +4,9 @@ import Latest from "./Latest";
 const Latests = () => {
   const [latests, setLatests] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/latest")
+    fetch(
+      "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/latest"
+    )
       .then((res) => res.json())
       .then((data) => {
         setLatests(data);

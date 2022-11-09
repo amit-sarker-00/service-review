@@ -22,13 +22,16 @@ const AddService = () => {
       rating: rating,
       price: price,
     };
-    fetch("http://localhost:5000/addService", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addService),
-    })
+    fetch(
+      "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/addService",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addService),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

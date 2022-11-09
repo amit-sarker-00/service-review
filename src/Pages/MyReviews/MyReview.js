@@ -10,11 +10,14 @@ const MyReview = ({ data }) => {
   const [reviews, setReviews] = useState([]);
   useTitle("MyReview");
   useEffect(() => {
-    fetch(`http://localhost:5000/myReviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}}`,
-      },
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/myReviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           logOut();
@@ -24,7 +27,7 @@ const MyReview = ({ data }) => {
       .then((data) => {
         setReviews(data);
       });
-  }, []);
+  }, [user?.email, logOut]);
   const { image, description, ServiceName, name, _id } = data;
   const handelDelete = (id) => {
     const toast = Swal.fire({
@@ -39,9 +42,12 @@ const MyReview = ({ data }) => {
       }
     });
     if (toast) {
-      fetch(`http://localhost:5000/reviewDelete/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/reviewDelete/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deleteCount > 0) {

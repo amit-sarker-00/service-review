@@ -3,37 +3,39 @@ import { useLoaderData } from "react-router-dom";
 
 const UpdateReview = () => {
   const updateReview = useLoaderData();
-  //   const [update, setUpdate] = useState(updateReview);
+  const [update, setUpdate] = useState(updateReview);
   const { itemName, _id, email, name, ServiceName, image, description } =
     updateReview;
-  //   const handelUpdateReview = (event) => {
-  //     event.preventDefault();
-  //     fetch(`http://localhost:5000/update/${_id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(update),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //       });
-  //   };
-  //   const handelInputChange = (event) => {
-  //     // const value = event.target.value;
-  //     // const name = event.target.name;
-  //     // const newUser = { ...update };
-  //     // newUser[name] = value;
-  //     // setUpdate(newUser);
-  //   };
+  console.log(update);
+  const handelUpdateReview = (event) => {
+    event.preventDefault();
+    // fetch(`https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/update/${_id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(update),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
+  };
+  const handelInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    const newUser = { ...update };
+    newUser[name] = value;
+    setUpdate(newUser);
+    console.log(newUser);
+  };
   return (
     <div>
       <div className="text-xl md:text-3xl text-center  font-bold">
         Update {itemName} Review
       </div>
       <div className="w-full px-6 py-4 my-10 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg mx-auto">
-        <form>
+        <form onSubmit={handelUpdateReview}>
           <div>
             <label
               htmlFor="name"
@@ -62,6 +64,7 @@ const UpdateReview = () => {
             <div className="flex flex-col items-start">
               <input
                 type="text"
+                onChange={handelInputChange}
                 name="ServiceName"
                 placeholder="ServiceName"
                 defaultValue={ServiceName}

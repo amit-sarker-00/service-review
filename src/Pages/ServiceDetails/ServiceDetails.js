@@ -10,7 +10,9 @@ const ServiceDetails = () => {
   const ServiceDetail = useLoaderData();
   const { _id, name, details, image, rating, price } = ServiceDetail;
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${name}`)
+    fetch(
+      `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/reviews/${name}`
+    )
       .then((res) => res.json())
       .then((data) => setDatas(data))
       .catch((err) => console.log(err));

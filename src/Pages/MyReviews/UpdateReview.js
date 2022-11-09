@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import useTitle from "../../Hooks/useTitle";
 
 const UpdateReview = () => {
+  useTitle("UpdateReview");
   const updateReview = useLoaderData();
   const [update, setUpdate] = useState(updateReview);
   const { itemName, _id, email, name, ServiceName, image, description } =
@@ -23,6 +26,9 @@ const UpdateReview = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        if (update.acknowledged === true) {
+          Swal.fire("Updated Successfully");
+        }
         console.log(data);
         setUpdate(data);
       });
@@ -55,6 +61,7 @@ const UpdateReview = () => {
                 type="text"
                 name="name"
                 defaultValue={name}
+                readOnly
                 placeholder="your Name"
                 required
                 className="block w-full mt-1 p-2 border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -75,6 +82,7 @@ const UpdateReview = () => {
                 name="ServiceName"
                 placeholder="ServiceName"
                 defaultValue={ServiceName}
+                readOnly
                 required
                 className="block w-full mt-1 p-2 border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -95,6 +103,7 @@ const UpdateReview = () => {
                 name="image"
                 placeholder="your image"
                 defaultValue={image}
+                readOnly
                 required
                 className="block w-full mt-1 p-2  border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -113,6 +122,7 @@ const UpdateReview = () => {
                 type="email"
                 name="email"
                 placeholder="your email"
+                readOnly
                 defaultValue={email}
                 required
                 className="block w-full mt-1 p-2  border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -140,12 +150,14 @@ const UpdateReview = () => {
           </div>
 
           <div className="flex items-center justify-end mt-4">
-            <button
-              type="submit"
-              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
-            >
-              Update
-            </button>
+            <Link to="/myReviews">
+              <button
+                type="submit"
+                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+              >
+                Update
+              </button>
+            </Link>
           </div>
         </form>
       </div>

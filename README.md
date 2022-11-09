@@ -26,4 +26,6 @@
 
 # client side host by firebase
 
+# update review section added
+
 # Live site link : https://wild-photo.web.app

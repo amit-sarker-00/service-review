@@ -2,8 +2,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 const ServiceReview = ({ data }) => {
-  console.log(data);
-  const { _id, itemName, ServiceName, description, image, name } = data;
+  const { _id, ServiceName, description, image, name } = data;
   return (
     <div>
       <div className="flex text-center mx-auto h-auto md:h-80 my-10 flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-900 dark:text-gray-100">

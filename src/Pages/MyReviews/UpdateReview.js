@@ -1,50 +1,39 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
-import useTitle from "../../Hooks/useTitle";
 
-const AddReview = () => {
-  const { user } = useContext(AuthContext);
-  const review = useLoaderData();
-  const itemName = review.name;
-  console.log(itemName);
-  useTitle("AddReview");
-  const handelAddReview = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const image = form.image.value;
-    const description = form.description.value;
-    const ServiceName = form.ServiceName.value;
-    const email = form.email.value;
-    // console.log(ServiceName);
-
-    console.log(name, image, description);
-    const addReview = {
-      itemName: itemName,
-      name: name,
-      image: image,
-      description: description,
-      ServiceName: ServiceName,
-      email: email,
-    };
-    fetch("http://localhost:5000/myReviews", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addReview),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-      });
-  };
+const UpdateReview = () => {
+  const updateReview = useLoaderData();
+  //   const [update, setUpdate] = useState(updateReview);
+  const { itemName, _id, email, name, ServiceName, image, description } =
+    updateReview;
+  //   const handelUpdateReview = (event) => {
+  //     event.preventDefault();
+  //     fetch(`http://localhost:5000/update/${_id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(update),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //       });
+  //   };
+  //   const handelInputChange = (event) => {
+  //     // const value = event.target.value;
+  //     // const name = event.target.name;
+  //     // const newUser = { ...update };
+  //     // newUser[name] = value;
+  //     // setUpdate(newUser);
+  //   };
   return (
     <div>
+      <div className="text-xl md:text-3xl text-center  font-bold">
+        Update {itemName} Review
+      </div>
       <div className="w-full px-6 py-4 my-10 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg mx-auto">
-        <form onSubmit={handelAddReview}>
+        <form>
           <div>
             <label
               htmlFor="name"
@@ -56,6 +45,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="name"
+                defaultValue={name}
                 placeholder="your Name"
                 required
                 className="block w-full mt-1 p-2 border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -74,6 +64,7 @@ const AddReview = () => {
                 type="text"
                 name="ServiceName"
                 placeholder="ServiceName"
+                defaultValue={ServiceName}
                 required
                 className="block w-full mt-1 p-2 border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -92,6 +83,7 @@ const AddReview = () => {
                 type="text"
                 name="image"
                 placeholder="your image"
+                defaultValue={image}
                 required
                 className="block w-full mt-1 p-2  border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -109,7 +101,7 @@ const AddReview = () => {
                 type="email"
                 name="email"
                 placeholder="your email"
-                defaultValue={user?.email}
+                defaultValue={email}
                 required
                 className="block w-full mt-1 p-2  border rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -126,6 +118,7 @@ const AddReview = () => {
               <textarea
                 name="description"
                 rows="4"
+                defaultValue={description}
                 className="block p-2 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500     dark:focus:border-blue-500"
                 placeholder="description"
                 required
@@ -138,7 +131,7 @@ const AddReview = () => {
               type="submit"
               className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
             >
-              Add
+              Update
             </button>
           </div>
         </form>
@@ -147,4 +140,4 @@ const AddReview = () => {
   );
 };
 
-export default AddReview;
+export default UpdateReview;

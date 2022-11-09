@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import useTitle from "../../Hooks/useTitle";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyReview = ({ data }) => {
   const [reviews, setReviews] = useState([]);
@@ -66,7 +67,9 @@ const MyReview = ({ data }) => {
           >
             Delete
           </button>
-          <button className="btn  btn-info rounded">Edit Review</button>
+          <Link to={`/updateReview/${_id}`}>
+            <button className="btn  btn-info rounded">Edit Review</button>
+          </Link>
         </div>
       </div>
     </div>

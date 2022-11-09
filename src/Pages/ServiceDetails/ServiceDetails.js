@@ -49,12 +49,12 @@ const ServiceDetails = () => {
         </div>
         <div>
           <h1 className="text-xl md:text-3xl lg:text-5xl text-center font-bold">
-            review section
+            Service Reviews
           </h1>
-          <div>
+          <div className="text-center">
             <Link
               to={`/addReview/${_id}`}
-              className="text-xl btn btn-info rounded my-4"
+              className="text-md btn btn-info rounded my-4 "
             >
               Add Reviews
             </Link>

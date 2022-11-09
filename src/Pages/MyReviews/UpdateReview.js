@@ -6,28 +6,34 @@ const UpdateReview = () => {
   const [update, setUpdate] = useState(updateReview);
   const { itemName, _id, email, name, ServiceName, image, description } =
     updateReview;
-  console.log(update);
+  //Edit review
+  console.log(_id);
   const handelUpdateReview = (event) => {
     event.preventDefault();
-    // fetch(`https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/update/${_id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(update),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+    console.log(update);
+    fetch(
+      `https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/editReview/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(update),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUpdate(data);
+      });
   };
+
   const handelInputChange = (event) => {
+    const field = event.target.name;
     const value = event.target.value;
-    const name = event.target.name;
     const newUser = { ...update };
-    newUser[name] = value;
+    newUser[field] = value;
     setUpdate(newUser);
-    console.log(newUser);
   };
   return (
     <div>
@@ -45,6 +51,7 @@ const UpdateReview = () => {
             </label>
             <div className="flex flex-col items-start">
               <input
+                onChange={handelInputChange}
                 type="text"
                 name="name"
                 defaultValue={name}
@@ -83,6 +90,7 @@ const UpdateReview = () => {
             </label>
             <div className="flex flex-col items-start">
               <input
+                onChange={handelInputChange}
                 type="text"
                 name="image"
                 placeholder="your image"
@@ -101,6 +109,7 @@ const UpdateReview = () => {
             </label>
             <div className="flex flex-col items-start">
               <input
+                onChange={handelInputChange}
                 type="email"
                 name="email"
                 placeholder="your email"
@@ -119,6 +128,7 @@ const UpdateReview = () => {
             </label>
             <div className="flex flex-col items-start">
               <textarea
+                onChange={handelInputChange}
                 name="description"
                 rows="4"
                 defaultValue={description}

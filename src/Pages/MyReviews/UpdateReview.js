@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useTitle from "../../Hooks/useTitle";
 
 const UpdateReview = () => {
   useTitle("UpdateReview");
+  const navigate = useNavigate();
   const updateReview = useLoaderData();
   const [update, setUpdate] = useState(updateReview);
   const { itemName, _id, email, name, ServiceName, image, description } =
@@ -26,11 +27,12 @@ const UpdateReview = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        if (update.acknowledged === true) {
+        if (data.acknowledged === true) {
           Swal.fire("Updated Successfully");
+          navigate("/myReviews");
+          console.log(data);
+          setUpdate(data);
         }
-        console.log(data);
-        setUpdate(data);
       });
   };
 
@@ -150,14 +152,12 @@ const UpdateReview = () => {
           </div>
 
           <div className="flex items-center justify-end mt-4">
-            <Link to="/myReviews">
-              <button
-                type="submit"
-                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
-              >
-                Update
-              </button>
-            </Link>
+            <button
+              type="submit"
+              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

@@ -8,6 +8,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 const MyReview = ({ data }) => {
   const { user, logOut } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  // const [toggle, setToggle] = useState(true);
   useTitle("MyReview");
   useEffect(() => {
     fetch(

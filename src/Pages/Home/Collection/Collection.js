@@ -6,11 +6,11 @@ const Collection = () => {
   const [datas, setDatas] = useState([]);
   useEffect(() => {
     fetch(
-      "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/services"
+      "https://b6a11-service-review-server-side-amit-sarker-00.vercel.app/homeService"
     )
       .then((res) => res.json())
       .then((data) => {
-        setDatas(data.slice(0, 3));
+        setDatas(data);
       });
   }, []);
   return (
